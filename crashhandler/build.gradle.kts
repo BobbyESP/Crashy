@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.jetbrains.kotlin.android)
+    `maven-publish`
 }
 
 android {
@@ -35,6 +36,19 @@ android {
     }
     kotlinOptions {
         jvmTarget = "17"
+    }
+}
+
+afterEvaluate {
+    publishing {
+        publications {
+            register("mavenRelease", MavenPublication::class) {
+                groupId = "com.bobbyesp"
+                artifactId = "crashhandler"
+                version = "1.0.0"
+                from(components["release"])
+            }
+        }
     }
 }
 
