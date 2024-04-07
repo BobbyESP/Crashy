@@ -1,6 +1,7 @@
 package com.bobbyesp.crashhandler
 
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.runtime.LaunchedEffect
@@ -25,7 +26,9 @@ class CrashHandlerActivity : ComponentActivity() {
         }
         val versionReport: String = intent.getStringExtra("version_report").toString()
         val logfilePath: String = intent.getStringExtra("logfile_path").toString()
-        val urlToReport: String = intent.getStringExtra("reportUrl").toString()
+        val receivedUrl: String = intent.getStringExtra("reportUrl").toString()
+
+        val urlToReport = receivedUrl.ifEmpty { null }
 
         setContent {
             val clipboardManager = LocalClipboardManager.current

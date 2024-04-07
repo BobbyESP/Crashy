@@ -52,37 +52,54 @@ fun CrashReportPage(
     Scaffold(modifier = Modifier.fillMaxSize(), bottomBar = {
         HorizontalDivider()
         Row(
-            modifier = Modifier.fillMaxWidth().navigationBarsPadding().padding(vertical = 8.dp)
+            modifier = Modifier
+                .fillMaxWidth()
+                .navigationBarsPadding()
+                .padding(vertical = 8.dp)
         ) {
             FilledButtonWithIcon(
-                modifier = Modifier.fillMaxWidth().padding(start = 16.dp).weight(1f),
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = 16.dp)
+                    .weight(1f),
                 onClick = onClick,
                 icon = Icons.Outlined.BugReport,
                 text = stringResource(R.string.copy_and_exit)
             )
-            if(reportUrl != null) {
-                Spacer(modifier = Modifier.width(12.dp))
-                FilledButtonWithIcon(
-                    modifier = Modifier.fillMaxWidth().padding(end = 16.dp).weight(1f), onClick = {
-                        clipboardManager.setText(AnnotatedString(errorMessageCut))
-                        uriOpener.openUri(reportUrl)
-                    }, icon = Icons.Outlined.BugReport, text = stringResource(R.string.report_dev)
-                )
-            }
+//            if (reportUrl != null) {
+//                Spacer(modifier = Modifier.width(12.dp))
+//                FilledButtonWithIcon(
+//                    modifier = Modifier
+//                        .fillMaxWidth()
+//                        .padding(end = 16.dp)
+//                        .weight(1f), onClick = {
+//                        clipboardManager.setText(AnnotatedString(errorMessageCut))
+//                        uriOpener.openUri(reportUrl)
+//                    }, icon = Icons.Outlined.BugReport, text = stringResource(R.string.report_dev)
+//                )
+//            }
         }
     }) {
         Column(
-            modifier = Modifier.padding(it).verticalScroll(rememberScrollState()).fillMaxSize()
+            modifier = Modifier
+                .padding(it)
+                .verticalScroll(rememberScrollState())
+                .fillMaxSize()
         ) {
             Icon(
                 imageVector = Icons.Outlined.BugReport,
                 contentDescription = "Bug occurred icon",
-                modifier = Modifier.padding(start = 16.dp).padding(top = 16.dp).size(48.dp)
+                modifier = Modifier
+                    .padding(start = 16.dp)
+                    .padding(top = 16.dp)
+                    .size(48.dp)
             )
             Text(
                 text = stringResource(R.string.unknown_error_title),
                 style = MaterialTheme.typography.displaySmall,
-                modifier = Modifier.padding(top = 16.dp, bottom = 12.dp).padding(horizontal = 16.dp)
+                modifier = Modifier
+                    .padding(top = 16.dp, bottom = 12.dp)
+                    .padding(horizontal = 16.dp)
             )
             ExpandableElevatedCard(
                 modifier = Modifier.padding(16.dp),
@@ -96,7 +113,9 @@ fun CrashReportPage(
                     text = versionReport,
                     style = MaterialTheme.typography.bodyMedium.copy(fontFamily = FontFamily.Monospace),
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
-                    modifier = Modifier.padding(horizontal = 8.dp, vertical = 4.dp).fillMaxWidth()
+                    modifier = Modifier
+                        .padding(horizontal = 8.dp, vertical = 4.dp)
+                        .fillMaxWidth()
                 )
             }
 
@@ -105,7 +124,9 @@ fun CrashReportPage(
                 text = errorMessage,
                 style = MaterialTheme.typography.bodyMedium.copy(fontFamily = FontFamily.Monospace),
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
-                modifier = Modifier.padding(16.dp).fillMaxWidth()
+                modifier = Modifier
+                    .padding(16.dp)
+                    .fillMaxWidth()
             )
         }
     }
